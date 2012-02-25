@@ -1,2 +1,19 @@
 <html>
+    <head>
+        <script>
+            function load(){
+                var c = document.getElementById("contain");
+                for (q in localStorage){
+                    if (q!="emode" && q!="cmid"){
+                        c.appendChild((function(){var qq = documento}.createElement("div");qq.innerHTML = "<button onclick ='this.innerHTML = prompt(\'hello\')'>"+q+"</button>"})());
+                }
+            }
+        </script>
+    </head>
+    <body onload="load()">
+        <div id = "contain">
+            <select id="hammerz">
+            </select>
+        </div>
+    </body>
 </html>

@@ -3,7 +3,7 @@
         localStorage.emode = Infinity;
         function contextStart(info, tab){
             console.log('click');
-            if (localStorage.emode == tab.id){
+/*            if (localStorage.emode == tab.id){
                 chrome.tabs.sendRequest(tab.id,{"command":"endemode"});
                 console.log("endmode");
                 localStorage.emode = Infinity;
@@ -11,22 +11,43 @@
                 console.log(localStorage.emode);
                 console.log(tab.id);
                 if (localStorage.emode != Infinity)
-                    chrome.tabs.sendRequest(localStorage.emode, {"command":"endmode"});
+                    chrome.tabs.sendRequest(localStorage.emode, {"command":"endmode"});*/
                 chrome.tabs.sendRequest(tab.id, {"command":"startemode","tabid":tab.id});
                 localStorage.emode = tab.id;
                 console.log("startmode");
-            }
+           // }
         }
         chrome.extension.onRequest.addListener(
             function(req, sender, sendback){
+                if (!req.command){
+                    console.log("yay, I'm here!");
+                    localStorage[req.loc] = req.str;
+                    return;
+                }
+                if (req.command == "fetch"){
+                    console.log(req);
+                    if (localStorage.hasOwnProperty(req.url)){
+                        sendback({"rules":JSON.parse(localStorage[req.url])});
+                        return;
+                    }else{
+                        for (qqq in localStorage){
+                            if (qqq.charAt(0)=="/"){
+                                if ((new regExp(qqq)).test(req.url)){
+                                    sendback({"rules":JSON.parse(localStorage[qqq])});
+                                }
+                            }
+                        }
+                    }
+                    sendback({"rules":new Object()});
+                }
                 console.log(sender.tab?
                     "from a content script:" + sender.tab.id:
                     "from the extension");
-                if (request.command == "endmode"){
+                if (req.command == "endmode"){
                     sendback({"command":"stop"});
                     localStorage.emode = Infinity;
                     console.log("stopping");
-                }else if (request.command == "startemode"){
+                }else if (req.command == "startemode"){
                     sendback({"command":"start"});
                     console.log("starting");
                     localStorage.emode = sender.tab.id;

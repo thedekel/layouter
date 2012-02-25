@@ -1,6 +1,6 @@
 {
     "name": "layouter",
-    "version": "0.3",
+    "version": "0.5",
     "description": "A chrome extension that creates custom layouts for visited sites",
     "permissions": [
         "http://*/*"
