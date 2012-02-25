@@ -6,6 +6,15 @@ var setsize = function(obj){
     console.log(rules);
 }
 
+var movediv = function(el){
+	window.onclick = function(ev){
+		console.log("clicked, x,y ="+ev.x + " " + ev.y);
+		el.style.position = "absolute";
+		el.style.left = ev.x;
+		el.style.top = ev.y;
+	}
+}
+
 var resizediv = function(el){
     window.onclick = function(ev){
         console.log("clicked, x,y = "+ev.x + " " + ev.y);
