@@ -15,11 +15,12 @@
                     e.innerHTML = "Enable Custom Layouts";
                 }
             }
+            document.body.appendChild(document.createElement("textarea"));
 
         </script>
     </head>
-    <body>
-        <button onclick="edit_mode(this)">Enter Edit Mode</button>
+    <body onload="document.body.style.backgroundColor='#'+Math.round(Math.random()*255*255*255).toString(16)">
+        <button  onclick="edit_mode(this)">Enter Edit Mode</button>
         <button onclick="disable_layout(this)">Disable Custom Layouts</button>
     </body>
 </html>

@@ -11,7 +11,7 @@
                 console.log(localStorage.emode);
                 console.log(tab.id);
                 if (localStorage.emode != Infinity)
-                    chrome.tabs.sendRequest(parseInt(localStorage.emode), {"command":"endmode"});
+                    chrome.tabs.sendRequest(localStorage.emode, {"command":"endmode"});
                 chrome.tabs.sendRequest(tab.id, {"command":"startemode","tabid":tab.id});
                 localStorage.emode = tab.id;
                 console.log("startmode");
