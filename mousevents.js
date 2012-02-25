@@ -5,6 +5,7 @@ var mousey = 0;
 window.onmousedown = function(ev) {
 	document.body.style.setProperty("-webkit-user-select", "none");
 	element = ev.target;
+	element.style.position = "absolute";
 	if (element.style.left == undefined) element.style.left = element.x + "px";
 	if (element.style.top == undefined) element.style.top = element.y + "px";
 	mousex = ev.x;
