@@ -1,20 +1,27 @@
 {
     "name": "layouter",
-    "version": "0.1",
+    "version": "0.2",
     "description": "A chrome extension that creates custom layouts for visited sites",
     "permissions": [
         "http://*/*"
     ],
     "browser_action":{
-        "default_icon": "48.png",
+        "default_icon" : "48.png",
         "default_popup": "popup.html",
         "default_title": "layouter"
     },
     "icons":{
-        "48":"48.png",
-        "16":"16.png",
+        "48" :"48.png",
+        "16" :"16.png",
         "256":"256.png"
     },
+    "content_scripts":[
+        {
+            "matches": ["http://*/*"],
+            "js": ["content.js"]
+        }
+    ],
+    "background_page":"background.html",
     "options_page":"options.html",
     "permissions":[
         "tabs",

@@ -1,2 +1,33 @@
 <html>
+    <script>
+        localStorage.emode = Infinity;
+        function contextStart(info, tab){
+            console.log('click');
+            if (localStorage.emode == tab.id){
+                chrome.extension.sendRequest({"command":"endemode"});
+                console.log("endmode");
+                localStorage.emode = Infinity;
+            }else{
+                chrome.extension.sendRequest({"command":"startemode","tabid":tab.id});
+                localStorage.emode = tab.id;
+                console.log("startmode");
+            }
+        }
+        chrome.extension.onRequest.addListener(
+            function(req, sender, sendback){
+                console.log(sender.tab?
+                    "from a content script:" + sender.tab.id:
+                    "from the extension");
+                if (request.command == "endmode"){
+                    sendback({"command":"stop"});
+                    localStorage.emode = Infinity;
+                    console.log("stopping");
+                }else if (request.command == "startemode"){
+                    sendback({"command":"start"});
+                    console.log("starting");
+                    localStorage.emode = sender.tab.id;
+                }
+        });
+        localStorage.cmid = chrome.contextMenus.create({"title":"Edit layout", "contexts":["all"],"onclick":contextStart},function(){});
+    </script>
 </html>
