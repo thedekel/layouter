@@ -1,0 +1,18 @@
+-page loads
+-check for matches with existing rules
+    -if found apply them
+
+-normal mode
+-enter edit mode
+    -all divs are hoverable and highlight (css styles)
+    -select a div (javascript onclick event)
+    -div is now selected (special css for div)
+    -mouse operation affect the div
+        -click and dragging moves it (creates a copy and changes position (register orginal ID, new coordinates))
+        -click+[modifier] resizes it (creates a copy and extends width and hight to pointer position (register original ID and new width/height))
+        -click+[modifier] removes div from page (css "display;none")
+        -key-press [escape?] deselects div
+            -if key is pressed with no div selected, exit edit-mode
+    -when edit mode exits, new rules are sent to background.html, saved
+
+
